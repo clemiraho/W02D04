@@ -22,27 +22,27 @@ def get_all_url_of_val_doise_city_council
 
         info = []
         array = []
-        doc = Nokogiri::HTML(open(PAGE_URL))
-        doc.xpath('//td/p/a/@href').each do |name|
-            h = {}
-            temp = name.text.sub(/^[.]/, @root)
-            h["email"] = get_email_of_a_city_council_from_this_webpage(temp)
-            info << h
+            doc = Nokogiri::HTML(open(PAGE_URL))
+            doc.xpath('//td/p/a/@href').each do |name|
+                h = {}
+                temp = name.text.sub(/^[.]/, @root)
+                h["email"] = get_email_of_a_city_council_from_this_webpage(temp)
+                    info << h
 
-        end
+end
 
-        doc.xpath('//td/p/a').each do |name|
+    doc.xpath('//td/p/a').each do |name|
             array << name.text
 
         
-        end
+    end
 
-        n = 0
+    n = 0
         info.each do |town|
             town["name"] = array[n]
          n += 1
 
-        end
+    end
 
         puts info
 
